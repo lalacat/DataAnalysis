@@ -1,3 +1,5 @@
+import collections
+
 import pymongo
 import pandas
 
@@ -14,24 +16,25 @@ db = client[DATABASE]
 
 coll = db['Task_caolu']
 
-# data = coll.find({})
-# print(data.count())
-# while True:
-#     try:
-#         print(data.next())
-#     except StopIteration:
-#         break
+data = coll.find({},{'_id':0})
+new_database = collections.defaultdict(list)
 
-data = pandas.DataFrame(list(coll.find({})))
-data.fillna(value=0)
+while True:
+    try:
+        temp = data.next()
+        if len(temp) > 2:
+            temp.pop('community_name')
+            for name,info in temp.items():
+                new_database['community_name'].append(name)
+                new_database['sold_address'].append(info['sold_address'])
+                new_database['sold_dealDate'].append(info['sold_dealDate'])
+                new_database['sold_dealcycle'].append(info['sold_dealcycle'])
+                new_database['sold_house_url'].append(info['sold_house_url'])
+                new_database['sold_positionInfo'].append(info['sold_positionInfo'])
+
+    except StopIteration:
+        break
 
 
-# 删除mongodb中的_id字段
-del data['_id']
-for i in data.head(5):
-    # l = len(i)
-    # print(str(l)+str(i))
-    print(type(i))
-    # for j in i :
-    #     print(j)
-    # print(i)
+pd_data = pandas.DataFrame(new_database)
+print(pd_data.head(5))
