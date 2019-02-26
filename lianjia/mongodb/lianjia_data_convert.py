@@ -35,8 +35,10 @@ def conver_data(coll):
                     new_database['community_name'].append(name)
                     new_database['sold_address'].append(info['sold_address'])
                     new_database['sold_dealDate'].append(info['sold_dealDate'])
+                    new_database['sold_totalPrice'].append(info['sold_totalPrice'])
+                    new_database['sold_unitPrice'].append(info['sold_unitPrice'])
                     new_database['sold_dealcycle'].append(info['sold_dealcycle'])
-                    new_database['sold_house_url'].append(info['sold_house_url'])
+                    new_database['sold_saleonborad'].append(info['sold_saleonborad'])
                     new_database['sold_positionInfo'].append(info['sold_positionInfo'])
 
         except StopIteration:
@@ -47,11 +49,10 @@ def conver_data(coll):
     return new_database
 
 
-# cd = conver_data(local_coll)
-# Ali_coll.insert(cd)
 all_name = local_db.list_collection_names()
 
-print(len(all_name))
+# 添加入数据库
+# print(len(all_name))
 for old_name in all_name:
     if old_name != 'ErrUrl':
         new_name = old_name.split('_')[-1]

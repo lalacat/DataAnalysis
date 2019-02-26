@@ -27,6 +27,7 @@ while True:
             temp.pop('community_name')
             for name,info in temp.items():
                 new_database['community_name'].append(name)
+
                 new_database['sold_address'].append(info['sold_address'])
                 new_database['sold_dealDate'].append(info['sold_dealDate'])
                 new_database['sold_dealcycle'].append(info['sold_dealcycle'])
