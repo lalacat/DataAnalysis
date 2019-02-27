@@ -38,5 +38,43 @@ def deal_num(str_num):
 # sold_dealcycle
 # sold_saleonborad
 # sold_positionInfo
-def house_type(community_name):
-    pass
+
+# data 碧云东方公寓 3室2厅 142_66平米(1200)
+# spilt
+
+
+
+
+
+
+data='''
+碧云东方公寓 3室2厅 142_66平米(1200)  
+凤凰大厦 1室1厅 80_35平米(356)  
+百富丽山庄 6室3厅 342平米(1810)	 
+金浦小区(金桥) --室--厅 66_66平米(280)	 
+'''
+
+
+
+
+# data_list = data.strip().split(' ')
+# print(data_list)
+text="foo bar \t baz  \tqux"
+
+import re
+# a = re.split('\s+',data)
+# b = re.split('\s+',text)
+
+# print(a)
+# print(b)
+
+# regex = re.compile('\s+')
+# regex = re.compile('\s+')
+regex = re.compile('碧云东方公寓')
+regex_01 = re.compile('3+')
+# print(regex.findall(text))
+# print(regex_01.findall(data))
+
+m =regex.findall(data)
+print(m)
+
