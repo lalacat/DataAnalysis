@@ -14,18 +14,19 @@ db = client[DATABASE]
 
 coll = db['Task_anshan']
 
-data = coll.find({},{'_id':0})
+data = coll.find({},{'_id':0,'community_name':0})
 
 import_data = data.next()
-import_data.pop('community_name')
+# import_data.pop('community_name')
 
-# print(pprint.pformat(import_data))
 frame = pd.DataFrame(import_data)
+# 返回 行标签
+# print(frame.index)
 
-frame_T = frame.T
-del frame_T['sold_house_url']
-# del frame_T['sold_house_url']
-# del frame_T['sold_house_url']
+frame.drop(['sold_address','sold_house_url'],inplace=True)
+print(frame)
 
-# print(frame_T.columns)
-print(frame_T)
+# frame_T = frame.T
+# frame_T_drop = frame_T.drop(['sold_address','sold_dealcycle'],axis=1)
+#
+# print(frame_T_drop)
