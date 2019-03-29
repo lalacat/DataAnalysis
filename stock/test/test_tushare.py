@@ -10,7 +10,7 @@ pro = ts.pro_api(token)
 
 
 df = pro.daily(ts_code=ts_code, start_date=startday, end_date=endday)
-print()
+print(df)
 # datas = pd.DataFrame(df)
 # # datas[['open','close']].plot()
 # plt.plot(datas['trade_date'],datas[['open','close']])
