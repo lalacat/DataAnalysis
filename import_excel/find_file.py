@@ -3,7 +3,8 @@ import pprint
 import re
 from collections import defaultdict
 
-import xlrd,xlwt
+import xlrd
+import xlwt
 
 path = 'Z:\\每日备份\\201805-201812'
 filter_mounths  = ['201810','201811','201812']
@@ -94,12 +95,12 @@ class GetHostInfo(object):
                 i += 1
             except Exception as e :
                 print(e)
-        wbk.save('C:\\华泰\\工作\\季度报告\\2018年第四季度\\import_host.xls')
+        wbk.save('C:\\华泰\\工作\\季度报告\\2019年第一季度\\import_host.xls')
 
 
 path2 = 'Z:\\每日备份\操作平台日志'
 ghi = GetHostInfo()
-data = ghi.find_excel([path2],['201810','201811','201812'])
+data = ghi.find_excel([path2],['201901','201902','201903'])
 res = defaultdict(dict)
 for name,path in data.items():
     res[name] = ghi.get_data_from_excle(path)
