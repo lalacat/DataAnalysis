@@ -10,10 +10,11 @@ pro = ts.pro_api(token)
 
 
 df = pro.daily(ts_code=ts_code, start_date=startday, end_date=endday)
+datas = pd.date_range('2019-03-26','2019-03-28')
+df['time'] = datas
 print(df)
 # datas = pd.DataFrame(df)
 # # datas[['open','close']].plot()
 # plt.plot(datas['trade_date'],datas[['open','close']])
 # plt.gcf().autofmt_xdate()
 # plt.show()
-# # print(datas)
