@@ -6,7 +6,7 @@ import matplotlib.dates as dts
 import pandas_datareader as web
 import matplotlib.pyplot as plt
 import tushare as ts
-import matplotlib.pyplot as plt
+import matplotlib as mpl
 
 # start = (2018,1,1)
 # end = (2019,3,28)
@@ -38,14 +38,19 @@ quotes = pro.daily(ts_code=ts_code, start_date=startday, end_date=endday)
 # 按照时间序列升序
 result = quotes.sort_values(by='trade_date', ascending=True)
 
-# 转换时间序列
-# ax = result['trade_date'].apply(lambda x: pandas.date_range(x,periods=1))
-# result.index = ax
 
-# print(result.index)
-datas = result.loc[len(result.index):,['trade_date','open','close','high','low']]
-datas.columns=['','','','','']
-print(datas)
+# 转换时间序列, DatetimeIndex 转换为 float
+def conver_time(time):
+    t = pandas.date_range(time,periods=1)
+    return mpl.dates.date2num(t.to_pydatetime())[0]
+
+
+result['trade_date'] = result['trade_date'].apply(lambda x:conver_time(x))
+
+data = result.loc[len(result.index):,['trade_date','open','close','high','low']]
+# datas.columns=['','','','','']
+datas = data.values
+# print(datas)
 # 画图
 fig,ax = plt.subplots(figsize=(8,5))
 fig.subplots_adjust(bottom=0.2)
