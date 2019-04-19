@@ -1,6 +1,12 @@
 import pandas_datareader as web
 import matplotlib.pyplot as plt
 import tushare as ts
+import numpy as np
+
+a = np.array([1,2,3])
+print(type(a))
+
+
 
 # tushare
 # web.DataReader
