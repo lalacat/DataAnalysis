@@ -6,7 +6,7 @@ from collections import defaultdict
 import xlrd
 import xlwt
 
-path = 'Z:\\每日备份\\201805-201812'
+# path = 'Z:\\每日备份\\201805-201812'
 filter_mounths  = ['201810','201811','201812']
 
 
@@ -14,7 +14,6 @@ class GetHostInfo(object):
 
     def __init__(self):
         pass
-
 
     def find_excel(self,paths,filter_mounths=None):
         if not isinstance(paths,list):
@@ -95,12 +94,12 @@ class GetHostInfo(object):
                 i += 1
             except Exception as e :
                 print(e)
-        wbk.save('C:\\华泰\\工作\\季度报告\\2019年第一季度\\import_host.xls')
+        wbk.save('C:\\华泰\\工作\\季度报告\\2019年第四季度\\import_host.xls')
 
 
-path2 = 'Z:\\每日备份\操作平台日志'
+path2 = 'Z:\\每日备份\\综合交易平台工作日志'
 ghi = GetHostInfo()
-data = ghi.find_excel([path2],['201901','201902','201903'])
+data = ghi.find_excel([path2],['201910','201911','201912'])
 res = defaultdict(dict)
 for name,path in data.items():
     res[name] = ghi.get_data_from_excle(path)
