@@ -3,7 +3,6 @@ import pandas
 
 import mpl_finance as mpf
 import matplotlib.dates as dts
-import pandas_datareader as web
 import matplotlib.pyplot as plt
 import tushare as ts
 import matplotlib as mpl
@@ -55,7 +54,7 @@ datas = data.values
 fig,ax = plt.subplots(figsize=(8,5))
 fig.subplots_adjust(bottom=0.2)
 # # mpf.candlestick2_ochl(ax,result['open'],result['close'],result['high'],result['low'],width=1,colorup='r',colordown='b')
-mpf.candlestick_ochl(ax,datas)
+# mpf.candlestick_ochl(ax,datas)
 ax.xaxis_date()
 ax.autoscale_view()
 plt.grid(True)
