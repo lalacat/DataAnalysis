@@ -49,7 +49,6 @@ class GetHostInfo(object):
                                     if new_f_n < len(keys):
                                         results[f] = results[keys[new_f_n]]
                                     else:
-
                                         new_f_n = f_n + 3
                                         results[f] = results[keys[new_f_n]]
                 return results
@@ -94,12 +93,12 @@ class GetHostInfo(object):
                 i += 1
             except Exception as e :
                 print(e)
-        wbk.save('C:\\华泰\\工作\\季度报告\\2019年第四季度\\import_host.xls')
+        wbk.save('C:\\华泰\\工作\\季度报告\\2020年第一季度\\import_host.xls')
 
 
 path2 = 'Z:\\每日备份\\综合交易平台工作日志'
 ghi = GetHostInfo()
-data = ghi.find_excel([path2],['201910','201911','201912'])
+data = ghi.find_excel([path2],['202001','202002','202003'])
 res = defaultdict(dict)
 for name,path in data.items():
     res[name] = ghi.get_data_from_excle(path)

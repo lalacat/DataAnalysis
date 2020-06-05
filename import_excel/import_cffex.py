@@ -10,8 +10,8 @@ import pandas as pd
 
 class import_cffex(object):
     def __init__(self):
-        # self.company_name = ['华泰期货','中信期货','海通期货','上海东证']
-        self.company_name = ['上海东证']
+        self.company_name = ['华泰期货','中信期货','海通期货','上海东证']
+        # self.company_name = ['上海东证']
         self.result = {}
         self.number = 1
         self.total_result = defaultdict(list)
@@ -58,19 +58,21 @@ class import_cffex(object):
         self.total_result.clear()
 
 
-start = datetime.strptime('20190101','%Y%m%d').date()
-end_day = datetime.strptime('20191231','%Y%m%d').date()
+start = datetime.strptime('20200101','%Y%m%d').date()
+end_day = datetime.strptime('20200430','%Y%m%d').date()
 cf = import_cffex()
 cf.get_tradingday(start,end_day)
 file_base_path = 'C:\\华泰\\工作\\data\\cffex\\{0}\\{1}.csv'
 result_path = 'C:\\华泰\\工作\\data\\cffex\\{0}\\{1}.csv'
 sorts = ['IF_1','IC_1','IH_1','TS_1','TF_1','T_1']
 for s in sorts:
-    for i in range(1,53):
+    for i in range(1,len(cf.result)+1):
         week = cf.result[str(i)]
         for day in week:
             day_temp = day.strftime('%Y%m%d')
-            # print('%s:%s 正在处理'%(s,day_temp))
+            print('%s:%s 正在处理'%(s,day_temp))
+            if day_temp in ['20200131']:
+                continue
             file_name= file_base_path.format(s,day_temp)
             cf.get_company_data(file_name)
 
